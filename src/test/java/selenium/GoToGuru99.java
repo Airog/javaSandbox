@@ -1,8 +1,10 @@
+package selenium;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
-public class TestOFTests {
+public class GoToGuru99 {
 
     @Test(enabled = false)
     public void ftest(){
