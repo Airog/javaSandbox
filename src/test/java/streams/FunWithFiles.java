@@ -2,24 +2,25 @@ package streams;
 
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FunWithFiles {
 
+    private URL getUrlToFile(String fname) {
+        return getClass().getClassLoader().getResource(fname);
+    }
+
     @Test
     public void getLessThan10Val() {
         try {
-            URL url = getClass().getClassLoader().getResource("testik_one.csv");
             // it could be also 'var rows = ...' but it's up to you
-            assert url != null;
-            Stream<String> rows = Files.lines(Paths.get(url.getPath()));
+            Stream<String> rows = Files.lines(Paths.get(getUrlToFile("testik_one.csv").getPath()));
             rows
                     .map(x -> x.split(","))
                     .filter(x -> x.length == 3)
@@ -33,5 +34,47 @@ public class FunWithFiles {
         } catch (java.lang.NumberFormatException e) {
             System.err.println("NumberFormatException again\n\n" + e);
         }
+    }
+
+    /*
+     * you can use '@Test(expectedExceptions = IOException.class)' if you sure on 100% that
+     * you will get the exception 'cause if you will not get it then
+     * you will get exception about you haven't got expected exception...funny
+     * */
+    @Test()
+    public void fileToMap() throws IOException {
+
+        Stream<String> rows = Files.lines(Paths.get(getUrlToFile("forMapCorrect.txt").getPath()));
+        var resultMap = rows.map(x -> x.split(","))
+                .collect(Collectors.toMap(
+                        x -> x[0],
+                        x -> x[1]
+                ));
+        rows.close();
+
+        // yoou can do like this:
+        resultMap.forEach((x, y) -> System.out.println("Key: " + x + ", Value: " + y));
+
+        //or like this (same result):
+        resultMap
+                .entrySet()
+                .stream()
+                .forEach(x -> System.out.println("Key: " + x.getKey() + ", Value: " + x.getValue()));
+    }
+
+    @Test()
+    public void fileToMapIncorrectFile() throws IOException {
+
+        Stream<String> rows = Files.lines(Paths.get(getUrlToFile("forMapIncorrect.txt").getPath()));
+        var resultMap = rows.map(x -> x.split(","))
+                // find only letters
+                .filter(x -> x[1].matches("^[a-zA-Z]+$"))
+                .collect(Collectors.toMap(
+                        x -> Integer.parseInt(x[0]),
+                        x -> x[1]
+                ));
+        rows.close();
+
+        resultMap.forEach((x, y) -> System.out.println("Key: " + x + ", Value: " + y));
     }
 }
