@@ -13,13 +13,17 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 public class ReqResIoTest {
 
+    /*
+    * TODO:
+    *  Add authentication
+    *  Add cookie getter
+    *  */
+
     @Test
     public void getSingleUser() {
         given()
-                .when()
-                .get("https://reqres.in/api/users/2")
-                .then()
-                .assertThat()
+                .when().get("https://reqres.in/api/users/2")
+                .then().assertThat()
                 .statusCode(200)
                 .body("data.id", equalTo(2));
     }
