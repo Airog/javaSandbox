@@ -14,10 +14,10 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class ReqResIoTest {
 
     /*
-    * TODO:
-    *  Add authentication
-    *  Add cookie getter
-    *  */
+     * TODO:
+     *  Add authentication
+     *  Add cookie getter
+     *  */
 
     @Test
     public void getSingleUser() {
@@ -49,5 +49,15 @@ public class ReqResIoTest {
         //get the list of values from json
         list = response.jsonPath().getList("data.name");
         list.forEach(System.out::println);
+    }
+
+    @Test
+    public void getMapFromResp() {
+        Response response = when().get("https://reqres.in/api/unknown").then().extract().response();
+        //get the list of values from json
+        var list = response.jsonPath().getMap("ad");
+        //using printf :)
+        list.forEach((x, y) -> System.out.printf("key: %s, val: %s\n", x, y));
+//        list.forEach((x, y) -> System.out.println("key: " + x + ", val: " + y));
     }
 }
