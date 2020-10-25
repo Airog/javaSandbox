@@ -16,6 +16,8 @@ public class FunWithArrayList {
     public void bf() {
         listInt = new ArrayList<>();
         IntStream.range(1, 10).forEach(x -> listInt.add(x));
+        // you can replace it with reference like this:
+        // IntStream.range(1, 10).forEach(listInt::add);
 
         listSt = new ArrayList<>();
         IntStream.range(1, 10).forEach(x -> listSt.add(Integer.toString(x)));

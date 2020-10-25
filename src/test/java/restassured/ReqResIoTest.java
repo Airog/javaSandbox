@@ -57,7 +57,7 @@ public class ReqResIoTest {
         //get the list of values from json
         var list = response.jsonPath().getMap("ad");
         //using printf :)
-        list.forEach((x, y) -> System.out.printf("key: %s, val: %s\n", x, y));
+        list.forEach((x, y) -> System.out.printf("key: %s, val: %s%n", x, y));
 //        list.forEach((x, y) -> System.out.println("key: " + x + ", val: " + y));
     }
 }
