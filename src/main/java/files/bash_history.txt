@@ -1,0 +1,11 @@
+HUI
+
+su
+apt install mc
+sudo apt install mc
+mc
+exit
+sudo apt install chrome-browser
+sudo apt ll
+sudo apt update
+sudo apt upgrade

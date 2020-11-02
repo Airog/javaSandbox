@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
@@ -76,7 +75,7 @@ public class ReqResIoTest {
         String content = Files.readString(Paths.get(url.getPath()), StandardCharsets.UTF_8);
 
         // This is another way to read the file
-//        List<String> lines = Files.readAllLines(Paths.get(url.getPath()), StandardCharsets.UTF_8);
+//        List<String> lines = files.Files.readAllLines(Paths.get(url.getPath()), StandardCharsets.UTF_8);
 //        lines.forEach(System.out::println);
 
         given()
@@ -97,7 +96,7 @@ public class ReqResIoTest {
         String content = Files.readString(Paths.get(url.getPath()), StandardCharsets.UTF_8);
 
         // This is another way to read the file
-//        List<String> lines = Files.readAllLines(Paths.get(url.getPath()), StandardCharsets.UTF_8);
+//        List<String> lines = files.Files.readAllLines(Paths.get(url.getPath()), StandardCharsets.UTF_8);
 //        lines.forEach(System.out::println);
 
         given()
