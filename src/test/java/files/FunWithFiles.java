@@ -1,5 +1,6 @@
-package streams;
+package files;
 
+import helpers.PathHelper;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -12,15 +13,14 @@ import java.util.stream.Stream;
 
 public class FunWithFiles {
 
-    private URL getUrlToFile(String fname) {
-        return getClass().getClassLoader().getResource(fname);
-    }
+    private PathHelper path = new PathHelper();
 
     @Test
     public void getLessThan10Val() {
         try {
+
             // it could be also 'var rows = ...' but it's up to you
-            Stream<String> rows = Files.lines(Paths.get(getUrlToFile("testik_one.csv").getPath()));
+            Stream<String> rows = Files.lines(Paths.get(path.getUrlToFile("testik_one.csv").getPath()));
             rows
                     .map(x -> x.split(","))
                     .filter(x -> x.length == 3)
@@ -43,8 +43,8 @@ public class FunWithFiles {
      * */
     @Test()
     public void fileToMap() throws IOException {
-
-        Stream<String> rows = Files.lines(Paths.get(getUrlToFile("forMapCorrect.txt").getPath()));
+        Stream<String> rows = Files.lines(
+                Paths.get(path.getUrlToFile("forMapCorrect.txt").getPath()));
         var resultMap = rows.map(x -> x.split(","))
                 .collect(Collectors.toMap(
                         x -> x[0],
@@ -64,8 +64,7 @@ public class FunWithFiles {
 
     @Test()
     public void fileToMapIncorrectFile() throws IOException {
-
-        Stream<String> rows = Files.lines(Paths.get(getUrlToFile("forMapIncorrect.txt").getPath()));
+        Stream<String> rows = Files.lines(Paths.get(new PathHelper().getUrlToFile("forMapIncorrect.txt").getPath()));
         var resultMap = rows.map(x -> x.split(","))
                 // find only letters
                 .filter(x -> x[1].matches("^[a-zA-Z]+$"))

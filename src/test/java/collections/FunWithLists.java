@@ -1,4 +1,4 @@
-package streams;
+package collections;
 
 import org.testng.annotations.Test;
 
