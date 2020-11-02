@@ -20,7 +20,7 @@ public class FunWithFiles {
         try {
 
             // it could be also 'var rows = ...' but it's up to you
-            Stream<String> rows = Files.lines(Paths.get(path.getUrlToFile("testik_one.csv").getPath()));
+            Stream<String> rows = Files.lines(Paths.get(path.getPath("testik_one.csv")));
             rows
                     .map(x -> x.split(","))
                     .filter(x -> x.length == 3)

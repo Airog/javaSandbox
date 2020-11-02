@@ -15,4 +15,8 @@ public class PathHelper {
     public Stream<String> getFileStream(String fname) throws IOException {
         return Files.lines(Paths.get(getUrlToFile(fname).getPath()));
     }
+
+    public String getPath(String path) {
+        return getUrlToFile(path).getPath();
+    }
 }
