@@ -4,10 +4,8 @@ import helpers.PathHelper;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -20,7 +18,7 @@ public class FunWithFiles {
         try {
 
             // it could be also 'var rows = ...' but it's up to you
-            Stream<String> rows = Files.lines(Paths.get(path.getPath("testik_one.csv")));
+            Stream<String> rows = Files.lines(Paths.get(path.getFromRes("testik_one.csv")));
             rows
                     .map(x -> x.split(","))
                     .filter(x -> x.length == 3)
@@ -64,7 +62,7 @@ public class FunWithFiles {
 
     @Test()
     public void fileToMapIncorrectFile() throws IOException {
-        Stream<String> rows = Files.lines(Paths.get(new PathHelper().getUrlToFile("forMapIncorrect.txt").getPath()));
+        Stream<String> rows = Files.lines(Paths.get(new PathHelper().getFromRes("forMapIncorrect.txt")));
         var resultMap = rows.map(x -> x.split(","))
                 // find only letters
                 .filter(x -> x[1].matches("^[a-zA-Z]+$"))

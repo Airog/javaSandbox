@@ -16,7 +16,7 @@ public class PathHelper {
         return Files.lines(Paths.get(getUrlToFile(fname).getPath()));
     }
 
-    public String getPath(String path) {
+    public String getFromRes(String path) {
         return getUrlToFile(path).getPath();
     }
 }
