@@ -58,3 +58,6 @@ out/
 # Default ignored files
 /shelf/
 /workspace.xml
+
+# test files
+test_file_*.txt

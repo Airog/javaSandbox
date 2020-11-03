@@ -23,11 +23,12 @@ public class MyFiles {
     }
 
     public void readWithBuffReaderLineByLine() {
-        // I don't know why this way isn't working
-//        Path path = Paths.get("/home/suser/IdeaProjects/sandboxJava/src/main/java/resources/bash_history.txt");
-        // this either...shit...
+        // absolute path
+//        Path path = Paths.get("/home/suser/IdeaProjects/sandboxJava/src/main/resources/bash_history.txt");
+        // this is not working, don't know why...shit...
 //        Path path = Paths.get("bash_history.txt");
-        Path path = Paths.get(new PathHelper().getUrlToFile("bash_history.txt").getPath());
+        Path path = Paths.get(new PathHelper().getFromRes("bash_history.txt"));
+
         Charset chSet = StandardCharsets.UTF_8;
 
         BufferedReader br;
@@ -38,12 +39,18 @@ public class MyFiles {
             br = Files.newBufferedReader(path, chSet);
             lineReader = new LineNumberReader(br);
 
-            while((line = lineReader.readLine()) != null) {
+            while ((line = lineReader.readLine()) != null) {
                 System.out.println(line);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void writeWithPath() throws IOException {
+        Path p = Paths.get("new_file.txt");
+        Files.write(p, "Hello!".getBytes());
     }
 }

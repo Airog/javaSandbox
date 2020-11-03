@@ -35,4 +35,9 @@ public class MyFilesTest {
     public void readWithBuffReaderLineByLine() throws IOException {
         new MyFiles().readWithBuffReaderLineByLine();
     }
+
+    @Test
+    public void testWriteWithPath() throws IOException {
+        new MyFiles().writeWithPath();
+    }
 }
