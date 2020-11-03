@@ -4,6 +4,9 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class MyFilesTest {
 
@@ -37,7 +40,18 @@ public class MyFilesTest {
     }
 
     @Test
-    public void testWriteWithPath() throws IOException {
+    public void testWriteWithPathFromMain() throws IOException {
         new MyFiles().writeWithPath();
+    }
+
+    @Test(description = "this need to just understand is Path has the same path from TEST module as MAIN has")
+    public void testWriteWithPathFromTest() throws IOException {
+        Path p = Paths.get("test_file_from_test.txt");
+        Files.write(p, "Hello from test!".getBytes());
+    }
+
+    @Test
+    public void testReadWithPathes() throws IOException {
+        new MyFiles().readWithPathes();
     }
 }
