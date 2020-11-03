@@ -46,7 +46,7 @@ public class MyFiles {
     public void readWithBuffReaderLineByLine() {
         // absolute path
 //        Path path = Paths.get("/home/suser/IdeaProjects/sandboxJava/src/main/resources/bash_history.txt");
-        // this is not working, don't know why...shit...
+        // it works is file containing in root dir of the project
 //        Path path = Paths.get("bash_history.txt");
         Path path = Paths.get(new PathHelper().getFromRes("bash_history.txt"));
 
